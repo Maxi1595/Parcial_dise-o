@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://cryk17nh6gg7m"]
+
+[ext_resource type="Script" path="res://Scrips/player.gd" id="1_2qym4"]
+[ext_resource type="Texture2D" uid="uid://bei7x67psb4c4" path="res://Assets_PixelAdventure/Main Characters/Mask Dude.png" id="1_y6r6i"]
+[ext_resource type="Script" path="res://Scrips/Camera2D.gd" id="3_jylgq"]
+[ext_resource type="Texture2D" uid="uid://ckaore37h130l" path="res://Assets_PixelAdventure/Menu/UI/lifebar-1.png" id="4_nnc52"]
+[ext_resource type="Texture2D" uid="uid://53mh0rvj54b1" path="res://Assets_PixelAdventure/Menu/UI/lifebar-2.png" id="5_tkrll"]
+[ext_resource type="Texture2D" uid="uid://csalfn7eptyw6" path="res://Assets_PixelAdventure/Items/Fruits/Kiwi_Icono.png" id="6_x1gv7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rc0bu"]
+size = Vector2(21, 23)
+
+[sub_resource type="Animation" id="Animation_jh1lv"]
+resource_name = "Fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_nnnt6"]
+resource_name = "Idle"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_q85m0"]
+resource_name = "Jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [23]
+}
+
+[sub_resource type="Animation" id="Animation_x8njg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_3yjn6"]
+resource_name = "walk"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_abvct"]
+_data = {
+"Fall": SubResource("Animation_jh1lv"),
+"Idle": SubResource("Animation_nnnt6"),
+"Jump": SubResource("Animation_q85m0"),
+"RESET": SubResource("Animation_x8njg"),
+"walk": SubResource("Animation_3yjn6")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_2qym4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y6r6i")
+hframes = 11
+vframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 3.5)
+shape = SubResource("RectangleShape2D_rc0bu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_abvct")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_jylgq")
+
+[node name="PlayerGUI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerGUI"]
+offset_right = 37.0
+offset_bottom = 54.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Barra_vida" type="Sprite2D" parent="PlayerGUI/VBoxContainer"]
+position = Vector2(48, 16)
+texture = ExtResource("4_nnc52")
+
+[node name="Vida" type="Sprite2D" parent="PlayerGUI/VBoxContainer/Barra_vida"]
+texture = ExtResource("5_tkrll")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerGUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="PlayerGUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_x1gv7")
+
+[node name="FrutasLabel" type="Label" parent="PlayerGUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://hssullo6kdyv"]
+
+[ext_resource type="Script" path="res://Scrips/Area2D.gd" id="1_pddjh"]
+[ext_resource type="Texture2D" uid="uid://cmvtg1vd8uvl7" path="res://Assets_PixelAdventure/Items/Fruits/Kiwi.png" id="2_ditdo"]
+
+[sub_resource type="Animation" id="Animation_vv11c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_2vvb5"]
+resource_name = "new_animation"
+length = 0.85
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dh4tl"]
+_data = {
+"RESET": SubResource("Animation_vv11c"),
+"new_animation": SubResource("Animation_2vvb5")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ty2xj"]
+
+[node name="Kiwi" type="Area2D"]
+script = ExtResource("1_pddjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ditdo")
+hframes = 17
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dh4tl")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ty2xj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
