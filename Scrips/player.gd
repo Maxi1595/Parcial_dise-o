@@ -5,7 +5,9 @@ var speed := 120
 var direccion := 0.0
 var jump :=250
 const gravity := 9
-@export var salud := 3
+@export var vidas := 3
+@export var death := false
+var empuje = Vector2 (-80, 0)
 
 
 func _ready():
@@ -34,3 +36,26 @@ func _physics_process(delta):
 
 func actualizaInterfazFrutas():
 	$PlayerGUI/VBoxContainer/HBoxContainer/FrutasLabel.text = str(Global.frutas)
+
+func _perderVida (enemigox):
+	vidas -= 1
+	
+	if position.x < enemigox:
+		velocity.x = -80
+		velocity.y = -100
+	if position.x > enemigox:
+		velocity.x = 80
+		velocity.y = -100
+		
+	if vidas <= 0:
+		get_tree().reload_current_scene()
+
+func _curarVida():
+	if vidas <= 2:
+		vidas += 1
+		print ("te has curado, tienes estas cantidades de vida" + str(vidas))
+
+
+func _on_area_2d_body_entered(body):
+	if body is Enemy:
+		pass

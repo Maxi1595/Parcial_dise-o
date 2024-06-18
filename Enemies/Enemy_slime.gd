@@ -20,3 +20,7 @@ func _physics_process(delta):
 	velocity.x = speed * direccion
 	
 	move_and_slide()
+
+func _on_area_2d_body_entered(body):
+	if body is Player:
+		body._perderVida(position.x)

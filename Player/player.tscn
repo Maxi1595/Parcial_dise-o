@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://cryk17nh6gg7m"]
+[gd_scene load_steps=13 format=3 uid="uid://cryk17nh6gg7m"]
 
 [ext_resource type="Script" path="res://Scrips/player.gd" id="1_2qym4"]
 [ext_resource type="Texture2D" uid="uid://bei7x67psb4c4" path="res://Assets_PixelAdventure/Main Characters/Mask Dude.png" id="1_y6r6i"]
 [ext_resource type="Script" path="res://Scrips/Camera2D.gd" id="3_jylgq"]
-[ext_resource type="Texture2D" uid="uid://ckaore37h130l" path="res://Assets_PixelAdventure/Menu/UI/lifebar-1.png" id="4_nnc52"]
-[ext_resource type="Texture2D" uid="uid://53mh0rvj54b1" path="res://Assets_PixelAdventure/Menu/UI/lifebar-2.png" id="5_tkrll"]
 [ext_resource type="Texture2D" uid="uid://csalfn7eptyw6" path="res://Assets_PixelAdventure/Items/Fruits/Kiwi_Icono.png" id="6_x1gv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rc0bu"]
-size = Vector2(21, 23)
+size = Vector2(20, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tsna"]
+size = Vector2(17, 3)
 
 [sub_resource type="Animation" id="Animation_jh1lv"]
 resource_name = "Fall"
@@ -110,8 +111,16 @@ vframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 3.5)
+position = Vector2(1, 3.5)
 shape = SubResource("RectangleShape2D_rc0bu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 17)
+shape = SubResource("RectangleShape2D_1tsna")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -129,13 +138,6 @@ offset_bottom = 54.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Barra_vida" type="Sprite2D" parent="PlayerGUI/VBoxContainer"]
-position = Vector2(48, 16)
-texture = ExtResource("4_nnc52")
-
-[node name="Vida" type="Sprite2D" parent="PlayerGUI/VBoxContainer/Barra_vida"]
-texture = ExtResource("5_tkrll")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerGUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -147,3 +149,5 @@ texture = ExtResource("6_x1gv7")
 
 [node name="FrutasLabel" type="Label" parent="PlayerGUI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
