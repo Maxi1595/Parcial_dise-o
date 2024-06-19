@@ -37,7 +37,7 @@ func _physics_process(delta):
 func actualizaInterfazFrutas():
 	$PlayerGUI/VBoxContainer/HBoxContainer/FrutasLabel.text = str(Global.frutas)
 
-func _perderVida (enemigox):
+func _perderVida_enemigo (enemigox):
 	vidas -= 1
 	
 	if position.x < enemigox:
@@ -57,4 +57,9 @@ func _curarVida():
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		body.queue_free()
+		body._eliminarEnemy()
+
+func _perderVida_trampa ():
+	vidas -= 1
+	if vidas <= 0:
+		get_tree().reload_current_scene()

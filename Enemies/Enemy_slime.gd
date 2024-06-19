@@ -23,5 +23,5 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		body._perderVida(position.x)
+		body._perderVida_enemigo(position.x)
 

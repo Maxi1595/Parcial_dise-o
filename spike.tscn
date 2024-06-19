@@ -1,11 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://ot0f5lfefghb"]
+[gd_scene load_steps=6 format=3 uid="uid://ot0f5lfefghb"]
 
+[ext_resource type="Script" path="res://spike.gd" id="1_fxc50"]
 [ext_resource type="Texture2D" uid="uid://b7ulpnpbw4u2f" path="res://Assets_PixelAdventure/Traps/Spikes/Idle.png" id="1_q86np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jf8jv"]
 size = Vector2(17, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xuhss"]
+texture = ExtResource("1_q86np")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+
+[sub_resource type="TileSet" id="TileSet_xasy5"]
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_xuhss")
+
 [node name="Spike" type="Area2D"]
+script = ExtResource("1_fxc50")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q86np")
@@ -13,3 +33,9 @@ texture = ExtResource("1_q86np")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_jf8jv")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_xasy5")
+format = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
