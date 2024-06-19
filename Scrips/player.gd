@@ -55,7 +55,6 @@ func _curarVida():
 		vidas += 1
 		print ("te has curado, tienes estas cantidades de vida" + str(vidas))
 
-
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		pass
+		body.queue_free()
