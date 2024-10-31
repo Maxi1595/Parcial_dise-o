@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1wi415l4b1rj"]
+
+[ext_resource type="Script" path="res://Enemies/Enemy_lansaguisantes.gd" id="1_ax1rr"]
+[ext_resource type="Texture2D" uid="uid://d2sy7elgkem8v" path="res://Assets_PixelAdventure/Enemies/Plant/Attack (44x42).png" id="1_nft1k"]
+
+[sub_resource type="Animation" id="Animation_ck7p2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_v4np7"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 2, 3, 4, 5, 6, 7, 7, 7]
+}
+
+[sub_resource type="Animation" id="Animation_6sr8u"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2qdhf"]
+_data = {
+"RESET": SubResource("Animation_ck7p2"),
+"attack": SubResource("Animation_v4np7"),
+"idle": SubResource("Animation_6sr8u")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4oxr0"]
+size = Vector2(20, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yey2p"]
+size = Vector2(17, 4)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_ax1rr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2.5)
+scale = Vector2(1, 0.880952)
+texture = ExtResource("1_nft1k")
+hframes = 8
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2qdhf")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 1.625)
+shape = SubResource("RectangleShape2D_4oxr0")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-16, -3)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.5, -18)
+shape = SubResource("RectangleShape2D_yey2p")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cryk17nh6gg7m"]
 
-[ext_resource type="Script" path="res://Scrips/player.gd" id="1_2qym4"]
+[ext_resource type="Script" path="res://Scrips/player.gd" id="1_pvh2f"]
 [ext_resource type="Texture2D" uid="uid://bei7x67psb4c4" path="res://Assets_PixelAdventure/Main Characters/Mask Dude.png" id="1_y6r6i"]
 [ext_resource type="Script" path="res://Scrips/Camera2D.gd" id="3_jylgq"]
 [ext_resource type="Texture2D" uid="uid://csalfn7eptyw6" path="res://Assets_PixelAdventure/Items/Fruits/Kiwi_Icono.png" id="6_x1gv7"]
@@ -9,7 +9,7 @@
 size = Vector2(20, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tsna"]
-size = Vector2(20, 1.5)
+size = Vector2(22, 3.5)
 
 [sub_resource type="Animation" id="Animation_jh1lv"]
 resource_name = "Fall"
@@ -102,7 +102,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_2qym4")
+script = ExtResource("1_pvh2f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_y6r6i")
@@ -119,7 +119,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, 15.25)
+position = Vector2(1, 16.25)
 shape = SubResource("RectangleShape2D_1tsna")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

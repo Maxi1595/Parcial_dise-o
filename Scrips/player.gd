@@ -4,11 +4,10 @@ class_name Player
 var speed := 120
 var direccion := 0.0
 var jump :=250
+var minijump :=100
 const gravity := 9
-@export var vidas := 3
+@export var vidas := 1
 @export var death := false
-var empuje = Vector2 (-80, 0)
-
 
 func _ready():
 	Global.player = self
@@ -36,30 +35,25 @@ func _physics_process(delta):
 
 func actualizaInterfazFrutas():
 	$PlayerGUI/VBoxContainer/HBoxContainer/FrutasLabel.text = str(Global.frutas)
-
+	
 func _perderVida_enemigo (enemigox):
 	vidas -= 1
 	
-	if position.x < enemigox:
-		velocity.x = -80
-		velocity.y = -100
-	if position.x > enemigox:
-		velocity.x = 80
-		velocity.y = -100
-		
 	if vidas <= 0:
 		get_tree().reload_current_scene()
+		
 
-func _curarVida():
-	if vidas <= 2:
-		vidas += 1
-		print ("te has curado, tienes estas cantidades de vida" + str(vidas))
+#func _curarVida():
+	#if vidas <= 2:
+		#vidas += 1
+		#print ("te has curado, tienes estas cantidades de vida" + str(vidas))
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		body._eliminarEnemy()
+		velocity.y -= minijump
 
 func _perderVida_trampa ():
 	vidas -= 1
 	if vidas <= 0:
 		get_tree().reload_current_scene()
+
