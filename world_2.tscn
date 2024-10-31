@@ -349,7 +349,7 @@ position = Vector2(616, -72)
 position = Vector2(1016, -72)
 
 [node name="Lanzaguisantes3" parent="Enemy" instance=ExtResource("10_06h65")]
-position = Vector2(2080, 48)
+position = Vector2(2368, -112)
 
 [node name="Trampas" type="Node" parent="."]
 
@@ -508,9 +508,6 @@ position = Vector2(2312, 64)
 
 [node name="Spike51" parent="Trampas" instance=ExtResource("10_c0765")]
 position = Vector2(2296, 64)
-
-[node name="Spike46" parent="Trampas" instance=ExtResource("10_c0765")]
-position = Vector2(1432, -32)
 
 [node name="Spike47" parent="Trampas" instance=ExtResource("10_c0765")]
 position = Vector2(1360, -32)
