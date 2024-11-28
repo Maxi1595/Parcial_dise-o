@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4ndxrtxmyo5h"]
+[gd_scene load_steps=18 format=3 uid="uid://c4ndxrtxmyo5h"]
 
 [ext_resource type="PackedScene" uid="uid://cryk17nh6gg7m" path="res://Player/player.tscn" id="1_pac1b"]
 [ext_resource type="Texture2D" uid="uid://cbmb5cipyhb2u" path="res://Assets_PixelAdventure/Terrain/Terrain (16x16).png" id="2_7cukm"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://66f84vmy3dvb" path="res://jefe.tscn" id="9_setba"]
 [ext_resource type="PackedScene" uid="uid://ot0f5lfefghb" path="res://spike.tscn" id="11_aoplm"]
 [ext_resource type="Script" path="res://zonaFinalFelicitaciones.gd" id="12_u8dmp"]
+[ext_resource type="AudioStream" uid="uid://cjtkr7tp6c162" path="res://Assets_PixelAdventure/From Page to Practice.mp3" id="14_v0ltk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_csn1w"]
 texture = ExtResource("2_7cukm")
@@ -454,5 +455,8 @@ shape = SubResource("RectangleShape2D_w0tf1")
 
 [node name="Jefe" parent="." instance=ExtResource("9_setba")]
 position = Vector2(2064, 8)
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_v0ltk")
 
 [connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_area_2d_body_entered"]

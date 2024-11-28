@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjtkr7tp6c162"
+path="res://.godot/imported/From Page to Practice.mp3-b18c91308488b5465afde8905cf83c27.mp3str"
+
+[deps]
+
+source_file="res://Assets_PixelAdventure/From Page to Practice.mp3"
+dest_files=["res://.godot/imported/From Page to Practice.mp3-b18c91308488b5465afde8905cf83c27.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

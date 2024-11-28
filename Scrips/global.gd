@@ -10,3 +10,7 @@ var frutas := 0 :
 		return frutas
 		
 var player
+
+func reinicioContador():
+	frutas = 0
+

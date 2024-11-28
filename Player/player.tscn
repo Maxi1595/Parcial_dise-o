@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cryk17nh6gg7m"]
+[gd_scene load_steps=14 format=3 uid="uid://cryk17nh6gg7m"]
 
 [ext_resource type="Script" path="res://Scrips/player.gd" id="1_pvh2f"]
 [ext_resource type="Texture2D" uid="uid://bei7x67psb4c4" path="res://Assets_PixelAdventure/Main Characters/Mask Dude.png" id="1_y6r6i"]
 [ext_resource type="Script" path="res://Scrips/Camera2D.gd" id="3_jylgq"]
+[ext_resource type="Texture2D" uid="uid://bq8btvqsff3lo" path="res://Assets_PixelAdventure/flechasTouch.png" id="5_cdpjv"]
 [ext_resource type="Texture2D" uid="uid://csalfn7eptyw6" path="res://Assets_PixelAdventure/Items/Fruits/Kiwi_Icono.png" id="6_x1gv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rc0bu"]
@@ -149,5 +150,24 @@ texture = ExtResource("6_x1gv7")
 
 [node name="FrutasLabel" type="Label" parent="PlayerGUI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="Touchs" type="CanvasLayer" parent="."]
+
+[node name="Derecha" type="TouchScreenButton" parent="Touchs"]
+position = Vector2(77.0002, 181.095)
+texture_normal = ExtResource("5_cdpjv")
+action = "ui_right"
+
+[node name="Izquierda" type="TouchScreenButton" parent="Touchs"]
+position = Vector2(69.0002, 226)
+rotation = 3.14159
+texture_normal = ExtResource("5_cdpjv")
+action = "ui_left"
+
+[node name="Saltar" type="TouchScreenButton" parent="Touchs"]
+position = Vector2(344, 221)
+rotation = 4.71239
+texture_normal = ExtResource("5_cdpjv")
+action = "ui_accept"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xnljjg8yrj8w"]
+[gd_scene load_steps=17 format=3 uid="uid://xnljjg8yrj8w"]
 
 [ext_resource type="PackedScene" uid="uid://cryk17nh6gg7m" path="res://Player/player.tscn" id="1_jakxy"]
 [ext_resource type="Texture2D" uid="uid://cbmb5cipyhb2u" path="res://Assets_PixelAdventure/Terrain/Terrain (16x16).png" id="2_fy8g5"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d1wi415l4b1rj" path="res://Enemies/Enemy_lansaguisantes.tscn" id="10_06h65"]
 [ext_resource type="PackedScene" uid="uid://ot0f5lfefghb" path="res://spike.tscn" id="10_c0765"]
 [ext_resource type="Script" path="res://PasarNivelFinal.gd" id="11_ococc"]
+[ext_resource type="AudioStream" uid="uid://cjtkr7tp6c162" path="res://Assets_PixelAdventure/From Page to Practice.mp3" id="13_cvquw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_upbne"]
 texture = ExtResource("2_fy8g5")
@@ -523,11 +524,14 @@ position = Vector2(504, -96)
 rotation = 4.71238
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(2480, -112)
+position = Vector2(2480, -120)
 script = ExtResource("11_ococc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(16, 24)
 shape = SubResource("RectangleShape2D_lak3h")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_cvquw")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

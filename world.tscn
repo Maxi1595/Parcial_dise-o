@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ilwtue7gl7kn"]
+[gd_scene load_steps=16 format=3 uid="uid://ilwtue7gl7kn"]
 
 [ext_resource type="PackedScene" uid="uid://cryk17nh6gg7m" path="res://Player/player.tscn" id="1_c5ovu"]
 [ext_resource type="Texture2D" uid="uid://cbmb5cipyhb2u" path="res://Assets_PixelAdventure/Terrain/Terrain (16x16).png" id="2_f46l2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bjgxo8orgmi6d" path="res://Enemies/Enemy_slime.tscn" id="9_oy38q"]
 [ext_resource type="PackedScene" uid="uid://ot0f5lfefghb" path="res://spike.tscn" id="11_vspxd"]
 [ext_resource type="Script" path="res://ZonaPasarNivel.gd" id="11_x8in6"]
+[ext_resource type="AudioStream" uid="uid://cjtkr7tp6c162" path="res://Assets_PixelAdventure/From Page to Practice.mp3" id="12_i0qpe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gpthv"]
 texture = ExtResource("2_f46l2")
@@ -573,13 +574,18 @@ scale = Vector2(-1, -1)
 monitorable = false
 
 [node name="Label" type="Label" parent="."]
-visible = false
-offset_left = 1616.0
+offset_left = 8.0
 offset_top = -96.0
-offset_right = 1736.0
-offset_bottom = -47.0
-text = "Gracias por
- jugar la Demo!"
+offset_right = 128.0
+offset_bottom = -72.0
+text = "Te mueves con:"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 40.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = -40.0
+text = " Saltas con:"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(2608, 64)
@@ -588,5 +594,10 @@ script = ExtResource("11_x8in6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(16.75, 10)
 shape = SubResource("RectangleShape2D_xb72t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_i0qpe")
+volume_db = -14.0
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
